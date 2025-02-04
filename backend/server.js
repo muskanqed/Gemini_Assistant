@@ -30,8 +30,7 @@ mongoose
     process.exit(1);
   });
 
-app.use('user',userRoute);
+app.use('/user',userRoute);
 
-// Start Express Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
