@@ -1,16 +1,15 @@
 const { Router } = require("express");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const { userModel } = require("../models/userModel");
-const { userSignupSchema } = require("../utils/validation");
-const { validateRequest } = require("../middlewares/validateMiddleware");
-const { authMiddleware } = require("../middlewares/authMiddleware");
+const { userSignupSchema, userLoginSchema } = require('../utils/validation')
+const { validateRequest } = require("../middleware/validationRequest");
+const { authMiddleware } = require("../middleware/authMiddleware");
 
 const userRoute = Router();
 
 userRoute.post(
   "/signup",
   validateRequest(userSignupSchema),
-  authMiddleware,
   async (req, res) => {
     try {
       const { name, email, password } = req.body;
@@ -33,4 +32,4 @@ userRoute.post(
   }
 );
 
-module.exports = userRoute;
+module.exports = {userRoute};
