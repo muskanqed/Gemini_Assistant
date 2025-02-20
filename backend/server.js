@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const {userRoute} = require('./routes/userRoute');
+const { userRoute } = require('./routes/userRoute');
 const dotenv = require('dotenv');
+const chatRouter = require('./routes/chatRoute');
 
 // Load environment variables
 dotenv.config();
@@ -30,7 +31,8 @@ mongoose
     process.exit(1);
   });
 
-app.use('/user',userRoute);
+app.use('/user', userRoute);
+app.use('/chat', chatRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

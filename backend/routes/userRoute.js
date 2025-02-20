@@ -2,9 +2,8 @@ const { Router } = require("express");
 const bcrypt = require("bcrypt");
 const { userModel } = require("../models/userModel");
 const { userSignupSchema, userLoginSchema } = require("../utils/validation");
-const {generateToken} = require("../utils/tokenGenerator");
+const { generateToken } = require("../utils/tokenGenerator");
 const { validateRequest } = require("../middleware/validationRequest");
-
 
 const userRoute = Router();
 
@@ -37,9 +36,7 @@ userRoute.post(
   }
 );
 
-userRoute.post("/login",
-  validateRequest(userLoginSchema),
-  async (req, res) => {
+userRoute.post("/login", validateRequest(userLoginSchema), async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -63,6 +60,7 @@ userRoute.post("/login",
     }
 
     const token = generateToken(userFound._id);
+    console.log(token);
 
     res.setHeader("Authorization", `Bearer ${token}`);
 

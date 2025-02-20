@@ -1,13 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    firstName: String,
-    email: { type: String, unique: true },
-    password: String,
-    ChatRef: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Chat'
-    }]
+  firstName: String,
+  email: { type: String, unique: true },
+  password: String,
+  ChatRef: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Chat",
+    },
+  ],
 });
 
 // Just another method for hashing password
@@ -19,6 +21,6 @@ const userSchema = mongoose.Schema({
 //     next();
 // });
 
-const userModel = mongoose.model('users', userSchema);
+const userModel = mongoose.model("users", userSchema);
 
-module.exports = {userModel};
+module.exports = { userModel };
